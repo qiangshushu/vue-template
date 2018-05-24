@@ -23,12 +23,12 @@
         <li>flexible</li>
         <li>zepto</li>
       </ul>
-
       <img src="~assets/common/icon_aipay.png" />
       <img src="~assets/common/icon_wechat.png" />
+      <v-test-list :list="list"></v-test-list>
     </div>
     <div class="footer">
-      <mt-button type="primary">primary</mt-button>
+      <mt-button type="primary">固定在底部</mt-button>
     </div>
   </div>
 </template>
@@ -40,17 +40,50 @@
   import Swiper from 'swiper';
 
   export default {
+    mixins: [],
+    props: [],
     data() {
       return {
-        msg: '本页面语言为:' + this.$t('lang')
+        msg: '本页面语言为:' + this.$t('lang'),
+        list: []
       };
     },
+    beforeCreate() {
+      console.log('beforeCreate', this.msg);
+    },
     created() {
+      console.log('created');
       this.getDeviceInfo();
+      for(let i = 0; i < 100; i++) {
+        this.list.push(i);
+      }
+    },
+    beforeMount() {
+      console.log('beforeMount');
     },
     mounted() {
-      console.log($);
+      console.log('mounted');
     },
+    beforeUpdate() {
+      console.log('beforeUpdate');
+    },
+    updated() {
+      console.log('updated');
+    },
+    beforeDestroy() {
+      console.log('beforeDestroy');
+    },
+    destroyed() {
+      console.log('destroyed');
+    },
+    beforeRouterLeave() {
+      console.log('beforeRouterLeave');
+    },
+    beforeRouterEnter() {
+      console.log('beforeRouterEnter');
+    },
+    computed: {},
+    watch: {},
     methods: {
       ...mapActions(['ajax']),
       getDeviceInfo() {
@@ -98,7 +131,7 @@
   .index {
     img {
       width: 100px;
-      height: 20rem;
+      height: 100px;
     }
   }
 </style>
