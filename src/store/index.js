@@ -31,28 +31,20 @@ export default new Vuex.Store({
       let cacheData = state.state.cacheData;
 
       if (data instanceof Array) {
-        return new Promise((resolve, reject) => {
-          xhr(data).then(
-            res => {
-              resolve(res);
-            },
-            res => reject(res)
-          );
-        });
+        return xhr(data);
       } else {
         return new Promise((resolve, reject) => {
           if (api[name].cache && cacheData[name]) {
             return resolve(serialize(cacheData[name]));
           }
-          xhr(data).then(
-            res => {
+          xhr(data)
+            .then(res => {
               state.commit('setCacheData', {
                 [name]: serialize(res)
               });
               resolve(res);
-            },
-            res => reject(res)
-          );
+            })
+            .catch(res => reject(res));
         });
       }
     }

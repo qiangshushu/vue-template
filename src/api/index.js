@@ -112,14 +112,14 @@ let xhr = config => {
   } else {
     let method = config.method || 'post';
     let name = config.name;
-    let options = config.options || {};
+    let data = config.data || {};
 
     switch (method) {
       case 'get':
         return new Promise((resolve, reject) => {
           axios
             .get(api[name].url, {
-              params: options,
+              params: data,
               headers: {}
             })
             .then(res => {
@@ -132,7 +132,7 @@ let xhr = config => {
       case 'post':
         return new Promise((resolve, reject) => {
           axios
-            .post(api[name].url, JSON.stringify(options), {
+            .post(api[name].url, JSON.stringify(data), {
               headers: {
                 'Content-Type': 'application/json; charset=UTF-8'
               }

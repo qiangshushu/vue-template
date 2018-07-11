@@ -37,7 +37,6 @@ exports.cssLoaders = function(options) {
 
   // generate loader string to be used with extract text plugin
   function generateLoaders(loader, loaderOptions) {
-    console.log(loader);
     const loaders = [cssLoader, px2remLoader];
 
     if (loader) {
@@ -48,8 +47,6 @@ exports.cssLoaders = function(options) {
         })
       });
     }
-
-    console.log('loaders', loaders);
 
     // Extract CSS when that option is specified
     // (which is the case during production build)
