@@ -2,26 +2,22 @@
 
 module.exports = {
   root: true,
+  parser: 'babel-eslint',
   parserOptions: {
-    parser: 'babel-eslint'
+    sourceType: 'module'
   },
+  // required to lint *.vue files
+  extends: 'vue',
+  plugins: ['html'],
   env: {
     browser: true,
     node: true,
     es6: true
   },
-  extends: [
-    // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
-    // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
-    'plugin:vue/essential',
-    // https://github.com/standard/standard/blob/master/docs/RULES-en.md
-    'standard'
-  ],
-  // required to lint *.vue files
-  plugins: ['vue'],
   // add your custom rules here
   rules: {
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 1, // allow debugger during development
+    // allow debugger during development
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     'no-alert': 0, //禁止使用alert confirm prompt
     'no-array-constructor': 2, //禁止使用数组构造器
     'no-bitwise': 0, //禁止使用按位运算符
@@ -192,7 +188,6 @@ module.exports = {
     'wrap-iife': [2, 'inside'], //立即执行函数表达式的小括号风格
     'wrap-regex': 0, //正则表达式字面量用小括号包起来
     yoda: [2, 'never'], //禁止尤达条件
-    'keyword-spacing': 0, //确保字符前后空格的一致性
-    'no-tabs': 0
+    'keyword-spacing': 0 //确保字符前后空格的一致性
   }
 };
