@@ -11,6 +11,10 @@ import directs from './directive';
 import App from './App';
 import { spread } from './utils';
 
+if (window.htp.mock) {
+  require('./mock');
+}
+
 Vue.use(MintUI);
 Vue.use(VueI18n);
 

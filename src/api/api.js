@@ -1,5 +1,5 @@
 let api = {
-  getDeviceInfo: { url: 'getDeviceInfo', cache: true },
+  getDeviceInfo: { url: 'getDeviceInfo', cache: false },
   getPortSize: { url: 'getPortSize', cache: false }
 };
 
