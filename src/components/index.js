@@ -1,5 +1,7 @@
-import testList from './test-list';
+import header from './header';
+import lifecycle from './lifecycle';
 
 export default {
-  testList
+  header,
+  lifecycle
 };

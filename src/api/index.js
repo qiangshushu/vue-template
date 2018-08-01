@@ -134,7 +134,8 @@ let xhr = config => {
           axios
             .post(api[name].url, JSON.stringify(data), {
               headers: {
-                'Content-Type': 'application/json; charset=UTF-8'
+                'Content-Type': 'application/json; charset=UTF-8',
+                csrfToken: 'hElWtFdBvFnyyFIXE167ISx8'
               }
             })
             .then(res => {

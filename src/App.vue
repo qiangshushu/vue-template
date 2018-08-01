@@ -8,25 +8,16 @@
 
 <script>
   export default {
-    name: 'appvue',
     data() {
       return {
-        transitionName: '',
-        title: ''
+        transitionName: ''
       };
     },
     watch: {
       '$route'(to, from) {
-        if(this.isChild(from.path)) {
-          this.transitionName = this.isChild(to.path) ? 'slide-left' : 'slide-right';
-        } else {
-          this.transitionName = this.isChild(to.path) ? 'slide-left' : '';
-        }
-      }
-    },
-    methods: {
-      isChild(str) {
-        return (/\/.+/).test(str);
+        const toDepth = to.path.substr(1) ? to.path.substr(1).split('/').length : 0;
+        const fromDepth = from.path.substr(1) ? from.path.substr(1).split('/').length : 0;
+        this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
       }
     }
   };

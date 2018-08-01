@@ -10,7 +10,7 @@ const router = new VueRouter({
   routes
 });
 
-router.beforeEach((option, from, next) => {
+router.beforeEach((to, from, next) => {
   //解决messagebox在切换路由时不取消的bug
   if (document.querySelector('.mint-msgbox-cancel')) {
     document.querySelector('.mint-msgbox-cancel').click();

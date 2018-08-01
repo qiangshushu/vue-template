@@ -1,6 +1,8 @@
 let api = {
   getDeviceInfo: { url: 'getDeviceInfo', cache: false },
-  getPortSize: { url: 'getPortSize', cache: false }
+  getPortSize: { url: 'getPortSize', cache: false },
+  getHJYHost: { url: 'api/v1/users', cache: false },
+  topic: { url: 'api/v2/topics', cache: false }
 };
 
 for (var k in api) {
