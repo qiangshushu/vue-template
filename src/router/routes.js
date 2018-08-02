@@ -20,6 +20,21 @@ const router = [
     component: () => import('@/views/render')
   },
   {
+    name: 'event',
+    path: '/event',
+    component: () => import('@/views/event')
+  },
+  {
+    name: 'component',
+    path: '/component',
+    component: () => import('@/views/component')
+  },
+  {
+    name: 'questions',
+    path: '/questions',
+    component: () => import('@/views/questions')
+  },
+  {
     path: '*',
     redirect: '/'
   }

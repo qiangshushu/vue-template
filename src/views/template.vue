@@ -1,5 +1,5 @@
 <template>
-  <div class="pb pt">
+  <div class="pt">
     <v-header></v-header>
     <div class="content">
     </div>

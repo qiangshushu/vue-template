@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="lifecycle">
     <div>子组件</div>
     <div>message:{{message}}</div>
   </div>
@@ -81,3 +81,9 @@
     }
   };
 </script>
+
+<style lang="less" scoped>
+  .lifecycle {
+    background-color: green;
+  }
+</style>

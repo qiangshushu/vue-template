@@ -1,6 +1,6 @@
 <template>
   <div class="index pt">
-    <v-header></v-header>
+    <v-header title="目录"></v-header>
     <div class="content">
       <ul>
         <router-link v-for="(item, index) in catalog" tag="li" :to="{name: item.path}" :key="index">{{index + 1}} - {{item.title}}</router-link>
@@ -24,6 +24,18 @@
         {
           title: '渲染',
           path: 'render'
+        },
+        {
+          title: '事件',
+          path: 'event'
+        },
+        {
+          title: '组件',
+          path: 'component'
+        },
+        {
+          title: '问题',
+          path: 'questions'
         }]
       };
     }
