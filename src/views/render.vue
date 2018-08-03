@@ -54,8 +54,8 @@
       </section>
       <section>
         <p>7. style绑定</p>
-        <button :style="{'background-color': (toggleColor ? 'red' : 'green')}" @click="toggleColor = !toggleColor">点击切换颜色</button>
-        <button :style="[{'backgroundColor':'red'}]">按钮</button>
+        <button :style="{'background-color': (toggleColor ? '#ff4351' : '#a5de37')}" @click="toggleColor = !toggleColor">点击切换颜色</button>
+        <span :style="[{'backgroundColor':'#ff4351'}]">背景色</span>
       </section>
       <section>
         <p>8. 表单</p>
@@ -121,14 +121,8 @@
   section {
     padding: 20px;
   }
-  .red {
-    background-color: red;
-  }
-  .green {
-    background-color: green;
-  }
   .lifecycle {
-    background-color: red;
+    background-color: #7b72e9;
   }
   .bold {
     font-weight: bold;

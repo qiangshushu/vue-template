@@ -59,23 +59,24 @@
 </script>
 
 <style lang="less" scoped>
+  @import '../style/tool.less';
   section {
     padding: 20px;
   }
   .a {
     width: 200px;
     height: 200px;
-    background-color: red;
+    background-color: @red;
     .b {
       width: 150px;
       height: 150px;
-      background-color: green;
+      background-color: @green;
       position: absolute;
     }
     .c {
       width: 100px;
       height: 100px;
-      background-color: blue;
+      background-color: @blue;
       position: absolute;
     }
   }

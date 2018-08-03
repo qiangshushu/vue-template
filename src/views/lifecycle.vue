@@ -75,8 +75,4 @@
 </script>
 
 <style lang="less" scoped>
-  .red {
-    background-color: red;
-    color: blue;
-  }
 </style>

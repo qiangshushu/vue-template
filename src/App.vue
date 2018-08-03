@@ -26,9 +26,7 @@
 <style lang="less">
   @import 'swiper/dist/css/swiper.min.css';
   @import 'mint-ui/lib/style.css';
-  @import './style/tool.less';
-  @import './style/global.less';
-  @import './style/mint-ui.less';
+  @import './style/index.less';
   .slide-left-enter,
   .slide-right-leave-active {
     -webkit-transform: translate(100%, 0);
