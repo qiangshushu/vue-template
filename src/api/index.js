@@ -32,7 +32,6 @@ axios.interceptors.response.use(
   error => {
     loading = false;
     MintUI.Indicator.close();
-
     if (error && error.response) {
       switch (error.response.status) {
         case 400:
@@ -84,17 +83,17 @@ axios.interceptors.response.use(
 //检查接口请求状态
 function checkStatus(resolve, reject, response, config) {
   if (response && response.status === 200) {
-    if (response.data.status === 0) {
+    if (response.data.errorCode === 1) {
       resolve(response.data.data);
     } else {
       if (!config.error) {
-        MintUI.Toast(response.data.msg);
+        MintUI.Toast(response.data.errorMsg);
       }
       reject(response.data);
     }
   } else {
-    MintUI.Toast(response.msg || '请求失败');
-    reject(response.msg);
+    MintUI.Toast(response.message || '请求失败');
+    reject(response.message);
   }
 }
 
@@ -115,7 +114,7 @@ let xhr = config => {
   } else {
     let name = config.name;
     let data = config.data || {};
-    let { url, method = 'post', isJson } = api[name];
+    let { url, method = 'post', isForm } = api[name];
     if (/:id/.test(url)) {
       url = url.replace(':id', config.id);
     }

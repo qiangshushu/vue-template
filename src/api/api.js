@@ -1,3 +1,9 @@
+/**
+ * method:  默认post, [get,post,delete,put]
+ * cache: 缓存接口数据， 默认false
+ * isForm: 接口返回格式， 默认true 表示application/x-www-form-urlencoded, false表示application/json
+ * url中加入:id，会拼接到url中，在调用接口的时候需要传入id:xxx
+ */
 let api = {
   getDeviceInfo: { url: 'getDeviceInfo' },
   getPortSize: { url: 'getPortSize' },
@@ -11,9 +17,8 @@ let api = {
   goods: { url: 'api/v1/goods', method: 'get' }, //获取商品列表
   series: { url: 'api/v1/series', method: 'get' }, //获取所有套系信息
   goodsDetail: { url: 'api/v1/goods/detail/:id', method: 'get' }, //获取商品详情
-  cart: { url: 'api/v1/cart', method: 'get' }, //获取购物车的商品列表
-
-  getAddress: { url: 'api/v1/address', method: 'get' } //获取个人地址
+  cart: { url: 'api/v1/cart', method: 'get', isForm: true, cache: true }, //获取购物车的商品列表
+  getUsers: { url: 'users', method: 'get' }
 };
 
 for (var k in api) {

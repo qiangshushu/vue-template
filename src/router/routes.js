@@ -30,6 +30,11 @@ const router = [
     component: () => import('@/views/component')
   },
   {
+    name: 'axios',
+    path: '/axios',
+    component: () => import('@/views/axios')
+  },
+  {
     name: 'questions',
     path: '/questions',
     component: () => import('@/views/questions')

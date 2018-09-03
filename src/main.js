@@ -18,6 +18,7 @@ if (window.htp.mock) {
 Vue.use(MintUI);
 Vue.use(VueI18n);
 
+Vue.prototype.toast = MintUI.Toast;
 Vue.prototype.spread = spread;
 
 if ('addEventListener' in document) {

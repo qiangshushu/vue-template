@@ -36,17 +36,14 @@
           path: 'component'
         },
         {
+          title: 'axios',
+          path: 'axios'
+        },
+        {
           title: '问题',
           path: 'questions'
         }]
       };
-    },
-    created() {
-      this.ajax({
-        name: 'getDeviceInfo'
-      }).then(res => {
-        console.log(res);
-      });
     },
     methods: {
       ...mapActions(['ajax'])
