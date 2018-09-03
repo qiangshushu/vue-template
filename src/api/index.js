@@ -2,6 +2,7 @@ import axios from 'axios';
 import api from './api';
 import MintUI from 'mint-ui';
 import store from '../store';
+import qs from 'qs';
 
 let loading = false;
 let timer = null;
@@ -83,15 +84,15 @@ axios.interceptors.response.use(
 //检查接口请求状态
 function checkStatus(resolve, reject, response) {
   if (response && response.status === 200) {
-    if (response.data.status === 10000000) {
+    if (response.data.status === 0) {
       resolve(response.data.data);
     } else {
-      MintUI.Toast(response.message);
-      reject(response.message);
+      MintUI.Toast(response.msg);
+      reject(response.msg);
     }
   } else {
-    MintUI.Toast(response.message);
-    reject(response.message);
+    MintUI.Toast(response.msg || '请求失败');
+    reject(response.msg);
   }
 }
 
@@ -110,17 +111,31 @@ let xhr = config => {
   if (config instanceof Array) {
     return axios.all(config);
   } else {
-    let method = config.method || 'post';
     let name = config.name;
     let data = config.data || {};
+    let { url, method = 'post', isJson } = api[name];
+
+    if (method === 'post') {
+      if (isJson) {
+        data = JSON.stringify(data);
+      } else {
+        data = qs.stringify(data);
+      }
+    }
+
+    let headers = {
+      'X-AUTH-TOKEN': '',
+      'X-AUTH-USER': '',
+      'Content-Type': isJson ? 'application/json; charset=UTF-8' : 'application/x-www-form-urlencoded; charset=UTF-8'
+    };
 
     switch (method) {
       case 'get':
         return new Promise((resolve, reject) => {
           axios
-            .get(api[name].url, {
+            .get(url, {
               params: data,
-              headers: {}
+              headers
             })
             .then(res => {
               checkStatus(resolve, reject, res);
@@ -132,10 +147,8 @@ let xhr = config => {
       case 'post':
         return new Promise((resolve, reject) => {
           axios
-            .post(api[name].url, JSON.stringify(data), {
-              headers: {
-                'Content-Type': 'application/json; charset=UTF-8'
-              }
+            .post(url, data, {
+              headers
             })
             .then(res => {
               checkStatus(resolve, reject, res);

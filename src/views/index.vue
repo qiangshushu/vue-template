@@ -10,6 +10,8 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   export default {
     data() {
       return {
@@ -38,6 +40,16 @@
           path: 'questions'
         }]
       };
+    },
+    created() {
+      this.ajax({
+        name: 'getDeviceInfo'
+      }).then(res => {
+        console.log(res);
+      });
+    },
+    methods: {
+      ...mapActions(['ajax'])
     }
   };
 </script>
