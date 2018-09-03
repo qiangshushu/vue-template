@@ -82,13 +82,15 @@ axios.interceptors.response.use(
 );
 
 //检查接口请求状态
-function checkStatus(resolve, reject, response) {
+function checkStatus(resolve, reject, response, config) {
   if (response && response.status === 200) {
     if (response.data.status === 0) {
       resolve(response.data.data);
     } else {
-      MintUI.Toast(response.msg);
-      reject(response.msg);
+      if (!config.error) {
+        MintUI.Toast(response.data.msg);
+      }
+      reject(response.data);
     }
   } else {
     MintUI.Toast(response.msg || '请求失败');
@@ -114,9 +116,12 @@ let xhr = config => {
     let name = config.name;
     let data = config.data || {};
     let { url, method = 'post', isJson } = api[name];
+    if (/:id/.test(url)) {
+      url = url.replace(':id', config.id);
+    }
 
     if (method === 'post') {
-      if (isJson) {
+      if (isForm) {
         data = JSON.stringify(data);
       } else {
         data = qs.stringify(data);
@@ -124,9 +129,8 @@ let xhr = config => {
     }
 
     let headers = {
-      'X-AUTH-TOKEN': '',
-      'X-AUTH-USER': '',
-      'Content-Type': isJson ? 'application/json; charset=UTF-8' : 'application/x-www-form-urlencoded; charset=UTF-8'
+      session: store.getters.getCommon.session,
+      'Content-Type': isForm ? 'application/x-www-form-urlencoded; charset=UTF-8' : 'application/json; charset=UTF-8'
     };
 
     switch (method) {
@@ -138,7 +142,7 @@ let xhr = config => {
               headers
             })
             .then(res => {
-              checkStatus(resolve, reject, res);
+              checkStatus(resolve, reject, res, config);
             })
             .catch(res => {
               reject(res);
@@ -151,7 +155,7 @@ let xhr = config => {
               headers
             })
             .then(res => {
-              checkStatus(resolve, reject, res);
+              checkStatus(resolve, reject, res, config);
             })
             .catch(res => {
               reject(res);
